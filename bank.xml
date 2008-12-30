@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton. The COPYRIGHT file at the top level of this 
+	repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="bank_view_tree">
+            <field name="model">bank.bank</field>
+            <field name="type">tree</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                    <tree string="Banks">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="bic"/>
+                        <field name="type"/>
+                    </tree>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bank_view_form">
+            <field name="model">bank.bank</field>
+            <field name="type">form</field>
+            <field name="inherit" ref="party.party_view_form"/>
+            <field name="arch" type="xml">
+                <![CDATA[
+				<data>
+                    <xpath
+                        expr="/form"
+                        position="replace_attributes">
+                        <form string="Bank"/>
+                    </xpath>
+                    <xpath
+                        expr="/form/label[@name=&quot;code&quot;]"
+                        position="replace">
+                        <label name="bank_code"/>
+                    </xpath>
+                    <xpath
+                        expr="/form/field[@name=&quot;code&quot;]"
+                        position="replace">
+                        <field name="bank_code"/>
+                    </xpath>
+                    <xpath
+                        expr="/form/field[@name=&quot;active&quot;]"
+                        position="after">
+                        <label name="type"/>
+                        <field name="type"/>
+                        <label name="bic"/>
+                        <field name="bic"/>
+                    </xpath>
+				</data>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.action.act_window" id="act_bank_view">
+            <field name="name">Banks</field>
+            <field name="res_model">bank.bank</field>
+            <field name="view_type">form</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_tree_bank_view">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="bank_view_tree"/>
+            <field name="act_window" ref="act_bank_view"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_form_bank_view">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="bank_view_form"/>
+            <field name="act_window" ref="act_bank_view"/>
+        </record>
+        <menuitem parent="party.menu_party" sequence="50"
+                    action="act_bank_view" id="menu_bank_view"/>
+        <record model="ir.action.act_window" id="act_bank_view2">
+            <field name="name">New Bank</field>
+            <field name="res_model">bank.bank</field>
+            <field name="view_type">form</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_form_bank_view2">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="bank_view_form"/>
+            <field name="act_window" ref="act_bank_view2"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_tree_bank_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="bank_view_tree"/>
+            <field name="act_window" ref="act_bank_view2"/>
+        </record>
+        <menuitem parent="menu_bank_view" sequence="50"
+                    action="act_bank_view2" id="menu_bank_view2"/>
+        <record model="ir.ui.view" id="party_bank_view_form">
+            <field name="model">party.party</field>
+            <field name="type">form</field>
+            <field name="inherit" ref="party.party_view_form"/>
+            <field name="arch" type="xml">
+                <![CDATA[
+				<data>
+                    <xpath
+                        expr="/form/notebook/page[@id=&quot;accounting&quot;]"
+                        position="after">
+                        <page string="Bank Accounts" col="1" id="bank_accounts">
+                            <field name="bank_accounts"/>
+                        </page>
+                    </xpath>
+				</data>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bank_account_view_form">
+            <field name="model">bank.account</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="Bank Account">
+                    <label name="name"/>
+                    <field name="name"/>
+                    <label name="code"/>
+                    <field name="code"/>
+                    <label name="type"/>
+                    <field name="type"/>
+                    <label name="iban"/>
+                    <field name="iban"/>
+                    <label name="bank"/>
+                    <field name="bank"/>
+                    <label name="currency"/>
+                    <field name="currency"/>
+                    <separator name="owner" colspan="4"/>
+					<label name="owner"/>
+                    <field name="owner"/>
+                </form>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bank_account_view_tree">
+            <field name="model">bank.account</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Bank Accounts">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="code"/>
+                    <field name="iban"/>
+                    <field name="bank"/>
+                    <field name="currency"/>
+                    <field name="owner"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+    </data>
+</tryton>
