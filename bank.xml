@@ -13,7 +13,6 @@
                         <field name="name"/>
                         <field name="code"/>
                         <field name="bic"/>
-                        <field name="type"/>
                     </tree>
                 ]]>
             </field>
@@ -31,20 +30,11 @@
                         <form string="Bank"/>
                     </xpath>
                     <xpath
-                        expr="/form/label[@name=&quot;code&quot;]"
-                        position="replace">
-                        <label name="bank_code"/>
-                    </xpath>
-                    <xpath
-                        expr="/form/field[@name=&quot;code&quot;]"
-                        position="replace">
-                        <field name="bank_code"/>
-                    </xpath>
-                    <xpath
-                        expr="/form/field[@name=&quot;active&quot;]"
-                        position="after">
-                        <label name="type"/>
-                        <field name="type"/>
+                        expr="/form/notebook"
+                        position="before">
+					    <newline/>
+						<label name="bank_code"/>
+						<field name="bank_code"/>
                         <label name="bic"/>
                         <field name="bic"/>
                     </xpath>
@@ -112,16 +102,14 @@
                 <form string="Bank Account">
                     <label name="name"/>
                     <field name="name"/>
+					<label name="bank"/>
+                    <field name="bank"/>
                     <label name="code"/>
                     <field name="code"/>
-                    <label name="type"/>
-                    <field name="type"/>
+					<label name="currency"/>
+                    <field name="currency"/>
                     <label name="iban"/>
                     <field name="iban"/>
-                    <label name="bank"/>
-                    <field name="bank"/>
-                    <label name="currency"/>
-                    <field name="currency"/>
                     <separator name="owner" colspan="4"/>
 					<label name="owner"/>
                     <field name="owner"/>
@@ -136,7 +124,6 @@
                 <![CDATA[
                 <tree string="Bank Accounts">
                     <field name="name"/>
-                    <field name="type"/>
                     <field name="code"/>
                     <field name="iban"/>
                     <field name="bank"/>

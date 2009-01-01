@@ -10,15 +10,8 @@ class Bank(OSV):
     
     party = fields.Many2One('party.party', 'Party', required=True,
             ondelete='CASCADE')
-    bank_code = fields.Char('National Code', select=1, 
-                       states={'required': "type=='national'"})
-    bic = fields.Char('BIC/SWIFT', select=1, states={'required': "type=='bic'"})
-    type = fields.Selection([('national', 'National Standard'),
-                             ('bic', 'BIC/SWIFT')], 'Bank Type', required=True,
-                             select=1)
-    
-    def default_type(self, cursor, user, context=None):
-        return 'national'
+    bank_code = fields.Char('National Code', select=1)
+    bic = fields.Char('BIC/SWIFT', select=1)
         
 Bank()
 
@@ -29,18 +22,12 @@ class BankAccount(OSV):
     _description = __doc__
     
     name = fields.Char('Name', required=True)
-    code = fields.Char('Account Number', help='National Standard Code',
-                       states={'required': "type=='national'" })
-    iban = fields.Char('IBAN', states={'required': "type=='iban'"})
+    code = fields.Char('Account Number', help='National Standard Code')
+    iban = fields.Char('IBAN')
     bank = fields.Many2One('bank.bank', 'Bank', required=True)
     currency = fields.Many2One('currency.currency', 'Currency', required=True)
     party = fields.Many2One('party.party', 'Party', required=True)
-    type = fields.Selection([('national', 'National Standard'),
-                             ('iban', 'IBAN')], 'Bank Account Type')
-    owner = fields.Many2One('party.party', 'Differing Owner')
-    
-    def default_type(self, cursor, user, context=None):
-        return 'national'
+    owner = fields.Char('Differing Owner')
     
 BankAccount()    
     
