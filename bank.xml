@@ -11,7 +11,7 @@
                 <![CDATA[
                     <tree string="Banks">
                         <field name="name"/>
-                        <field name="code"/>
+                        <field name="bank_code"/>
                         <field name="bic"/>
                     </tree>
                 ]]>
