@@ -26,7 +26,8 @@ class BankAccount(OSV):
     iban = fields.Char('IBAN')
     bank = fields.Many2One('bank.bank', 'Bank', required=True)
     currency = fields.Many2One('currency.currency', 'Currency', required=True)
-    party = fields.Many2One('party.party', 'Party', required=True)
+    party = fields.Many2One('party.party', 'Party', 
+                            ondelete='CASCADE', required=True)
     owner = fields.Char('Differing Owner')
     
 BankAccount()    
