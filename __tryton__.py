@@ -2,15 +2,15 @@
 #this repository contains the full copyright notices and license terms.
 {
     'name': 'Party Bank',
-    'name_de_DE': 'Bankverbindungen für Parteien',
+    'name_de_DE': 'Partei Bankverbindungen',
     'version': '0.0.1',
     'author': 'virtual things',
     'email': 'info@virtual-things.biz',
     'website': 'http://www.virtual-things.biz/',
     'description': '''Party Bank
+    Allows the management of bank accounts for parties
 ''',
-    'description_de_DE': '''Erlaubt die Verwaltung von Bankverbindungen für
-    Parteien
+    'description_de_DE': '''Ermöglicht die Verwaltung von Bankverbindungen für Parteien
 ''',
     'depends': [
         'party',
@@ -19,7 +19,7 @@
     'xml': [
         'bank.xml',
     ],
-#    'translation': [
-#        'de_DE.csv',
-#    ],
+    'translation': [
+        'de_DE.csv',
+    ],
 }
