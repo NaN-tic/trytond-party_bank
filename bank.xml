@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!-- This file is part of Tryton. The COPYRIGHT file at the top level of this 
-	repository contains the full copyright notices and license terms. -->
+<!-- This file is part of Tryton. The COPYRIGHT file at the top level of this
+  repository contains the full copyright notices and license terms. -->
 <tryton>
     <data>
         <record model="ir.ui.view" id="bank_view_tree">
@@ -23,7 +23,7 @@
             <field name="inherit" ref="party.party_view_form"/>
             <field name="arch" type="xml">
                 <![CDATA[
-				<data>
+        		<data>
                     <xpath
                         expr="/form"
                         position="replace_attributes">
@@ -32,13 +32,13 @@
                     <xpath
                         expr="/form/notebook"
                         position="before">
-					    <newline/>
-						<label name="bank_code"/>
-						<field name="bank_code"/>
+              			<newline/>
+            			<label name="bank_code"/>
+            			<field name="bank_code"/>
                         <label name="bic"/>
                         <field name="bic"/>
                     </xpath>
-				</data>
+        		</data>
                 ]]>
             </field>
         </record>
@@ -82,7 +82,7 @@
             <field name="inherit" ref="party.party_view_form"/>
             <field name="arch" type="xml">
                 <![CDATA[
-				<data>
+        		<data>
                     <xpath
                         expr="/form/notebook/page[@id=&quot;accounting&quot;]"
                         position="after">
@@ -90,7 +90,7 @@
                             <field name="bank_accounts"/>
                         </page>
                     </xpath>
-				</data>
+        		</data>
                 ]]>
             </field>
         </record>
@@ -102,16 +102,16 @@
                 <form string="Bank Account">
                     <label name="name"/>
                     <field name="name"/>
-					<label name="bank"/>
+          			<label name="bank"/>
                     <field name="bank"/>
                     <label name="code"/>
                     <field name="code"/>
-					<label name="currency"/>
+          			<label name="currency"/>
                     <field name="currency"/>
                     <label name="iban"/>
                     <field name="iban"/>
                     <separator name="owner" colspan="4"/>
-					<label name="owner"/>
+          			<label name="owner"/>
                     <field name="owner"/>
                 </form>
                 ]]>
