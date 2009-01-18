@@ -20,8 +20,9 @@ class BankAccount(OSV):
     'Bank Account'
     _name = 'bank.account'
     _description = __doc__
+    _rec_name = 'full_name'
 
-    name = fields.Char('Name', required=True)
+    full_name = fields.Function('get_full_name', type='char', string='Name')
     code = fields.Char('Account Number', help='National Standard Code')
     iban = fields.Char('IBAN')
     bank = fields.Many2One('bank.bank', 'Bank', required=True,
@@ -35,17 +36,23 @@ class BankAccount(OSV):
                             ondelete='CASCADE', required=True)
     owner = fields.Char('Differing Owner')
 
-    def get_bank_code(self, cursor, user, ids, name, arg, context=None):
-        account_obj = self.pool.get('bank.account')
+    def get_full_name(self, cursor, user, ids, name, arg, context=None):
         res = {}
-        for account in account_obj.browse(cursor, user, ids, context=context):
+        for account in self.browse(cursor, user, ids, context=context):
+            res[account.id] = ", ".join(x for x in [account.bank.name,
+                        account.code, account.bank_code, account.iban,
+                        account.bic] if x)
+        return res
+
+    def get_bank_code(self, cursor, user, ids, name, arg, context=None):
+        res = {}
+        for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = account.bank.bank_code
         return res
 
     def get_bic(self, cursor, user, ids, name, arg, context=None):
-        account_obj = self.pool.get('bank.account')
         res = {}
-        for account in account_obj.browse(cursor, user, ids, context=context):
+        for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = account.bank.bic
         return res
 
