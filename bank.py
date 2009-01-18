@@ -24,11 +24,40 @@ class BankAccount(OSV):
     name = fields.Char('Name', required=True)
     code = fields.Char('Account Number', help='National Standard Code')
     iban = fields.Char('IBAN')
-    bank = fields.Many2One('bank.bank', 'Bank', required=True)
+    bank = fields.Many2One('bank.bank', 'Bank', required=True,
+                           on_change=['bank'])
+    bank_code = fields.Function('get_bank_code', type='char',
+            string='National Code')
+    bic = fields.Function('get_bic', type='char',
+            string='BIC/SWIFT')
     currency = fields.Many2One('currency.currency', 'Currency', required=True)
     party = fields.Many2One('party.party', 'Party',
                             ondelete='CASCADE', required=True)
     owner = fields.Char('Differing Owner')
+
+    def get_bank_code(self, cursor, user, ids, name, arg, context=None):
+        account_obj = self.pool.get('bank.account')
+        res = {}
+        for account in account_obj.browse(cursor, user, ids, context=context):
+            res[account.id] = account.bank.bank_code
+        return res
+
+    def get_bic(self, cursor, user, ids, name, arg, context=None):
+        account_obj = self.pool.get('bank.account')
+        res = {}
+        for account in account_obj.browse(cursor, user, ids, context=context):
+            res[account.id] = account.bank.bic
+        return res
+
+    def on_change_bank(self, cursor, user, ids, vals, context=None):
+        bank_obj = self.pool.get('bank.bank')
+        res = {}
+        bank = bank_obj.browse(cursor, user, vals.get('bank'),
+                                context=context)
+        if bank:
+            res['bank_code'] = bank.bank_code
+            res['bic'] = bank.bic
+        return res
 
 BankAccount()
 
