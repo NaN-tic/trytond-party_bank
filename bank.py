@@ -1,8 +1,8 @@
 #This file is part of Tryton. The COPYRIGHT file at the top level of
 #this repository contains the full copyright notices and license terms.
-from trytond.osv import fields, OSV
+from trytond.model import ModelView, ModelSQL, fields
 
-class Bank(OSV):
+class Bank(ModelSQL, ModelView):
     'Bank'
     _name = 'bank.bank'
     _description = __doc__
@@ -16,7 +16,7 @@ class Bank(OSV):
 Bank()
 
 
-class BankAccount(OSV):
+class BankAccount(ModelSQL, ModelView):
     'Bank Account'
     _name = 'bank.account'
     _description = __doc__
@@ -69,7 +69,7 @@ class BankAccount(OSV):
 BankAccount()
 
 
-class Party(OSV):
+class Party(ModelSQL, ModelView):
     'Party'
     _name = 'party.party'
     _description = __doc__
