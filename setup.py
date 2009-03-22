@@ -51,4 +51,9 @@ setup(name='trytond_party_bank',
     ],
     license='GPL-3',
     install_requires=requires,
+    zip_safe=False,
+    entry_points="""
+    [trytond.modules]
+    party_bank = trytond.modules.party_bank
+    """,
 )
