@@ -73,7 +73,7 @@
             <field name="view" ref="bank_view_tree"/>
             <field name="act_window" ref="act_bank_view2"/>
         </record>
-        <menuitem parent="menu_bank_view" sequence="50"
+        <menuitem parent="menu_bank_view"
                     action="act_bank_view2" id="menu_bank_view2"/>
         <record model="ir.ui.view" id="bank_account_view_form">
             <field name="model">bank.account</field>
