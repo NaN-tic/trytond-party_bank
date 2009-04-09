@@ -3,7 +3,7 @@
 {
     'name': 'Party Bank',
     'name_de_DE': 'Partei Bankverbindungen',
-    'version': '0.0.1',
+    'version': '0.0.2',
     'author': 'virtual things',
     'email': 'info@virtual-things.biz',
     'website': 'http://www.virtual-things.biz/',
@@ -18,6 +18,7 @@
     ],
     'xml': [
         'bank.xml',
+        'party.xml'
     ],
     'translation': [
         'de_DE.csv',
