@@ -27,6 +27,8 @@ setup(name='trytond_party_bank',
     author=info.get('author', ''),
     author_email=info.get('email', ''),
     url=info.get('website', ''),
+    download_url="http://downloads.tryton.org/" + \
+            info.get('version', '0.0.1').rsplit('.', 1)[0] + '/',
     package_dir={'trytond.modules.party_bank': '.'},
     packages=[
         'trytond.modules.party_bank',
@@ -51,4 +53,9 @@ setup(name='trytond_party_bank',
     ],
     license='GPL-3',
     install_requires=requires,
+    zip_safe=False,
+    entry_points="""
+    [trytond.modules]
+    party_bank = trytond.modules.party_bank
+    """,
 )

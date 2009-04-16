@@ -20,9 +20,7 @@ class BankAccount(ModelSQL, ModelView):
     'Bank Account'
     _name = 'bank.account'
     _description = __doc__
-    _rec_name = 'full_name'
 
-    full_name = fields.Function('get_full_name', type='char', string='Name')
     code = fields.Char('Account Number', help='National Standard Code')
     iban = fields.Char('IBAN')
     bank = fields.Many2One('bank.bank', 'Bank', required=True,
@@ -36,7 +34,7 @@ class BankAccount(ModelSQL, ModelView):
                             ondelete='CASCADE', required=True)
     owner = fields.Char('Differing Owner')
 
-    def get_full_name(self, cursor, user, ids, name, arg, context=None):
+    def get_rec_name(self, cursor, user, ids, name, arg, context=None):
         res = {}
         for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = ", ".join(x for x in [account.bank.name,
@@ -59,21 +57,12 @@ class BankAccount(ModelSQL, ModelView):
     def on_change_bank(self, cursor, user, ids, vals, context=None):
         bank_obj = self.pool.get('bank.bank')
         res = {}
-        bank = bank_obj.browse(cursor, user, vals.get('bank'),
+        if vals.get('bank'):
+            bank = bank_obj.browse(cursor, user, vals.get('bank'),
                                 context=context)
-        if bank:
-            res['bank_code'] = bank.bank_code
-            res['bic'] = bank.bic
+            if bank:
+                res['bank_code'] = bank.bank_code
+                res['bic'] = bank.bic
         return res
 
 BankAccount()
-
-
-class Party(ModelSQL, ModelView):
-    'Party'
-    _name = 'party.party'
-    _description = __doc__
-
-    bank_accounts = fields.One2Many('bank.account', 'party', 'Bank Accounts')
-
-Party()

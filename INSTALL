@@ -1,17 +1,18 @@
 Installing trytond_party_bank
-========================================
+=============================
 
 Prerequisites
 -------------
 
  * Python 2.4 or later (http://www.python.org/)
  * trytond 0.0.x (http://www.tryton.org/)
- * trytond_product (http://www.tryton.org/)
+ * trytond_party (http://www.tryton.org/)
+ * trytond_currency (http://www.tryton.org/)
 
 Installation
 ------------
 
-Once you've downloaded and unpacked a trytond_party source release, enter the
+Once you've downloaded and unpacked a trytond_party_bank source release, enter the
 directory where the archive was unpacked, and run:
 
     python setup.py install
@@ -27,4 +28,4 @@ documentation:
   http://docs.python.org/inst/inst.html
 
 To use without installation, extract the archive into ``trytond/modules`` with
-the directory name party.
+the directory name party_bank.

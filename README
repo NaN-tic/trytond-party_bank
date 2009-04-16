@@ -1,7 +1,7 @@
 trytond_party_bank
 =============================
 
-A german account chart module for the Tryton application platform.
+Module for adding banks to parties for the Tryton application platform.
 See __tryton__.py
 
 Installing
@@ -34,3 +34,7 @@ See COPYRIGHT
 For more information about Tryton please visit the Tryton web site:
 
   http://www.tryton.org/
+
+For more information about this module please contact virtual things:
+
+  http://virtual-things.biz/
