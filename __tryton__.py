@@ -3,6 +3,7 @@
 {
     'name': 'Party Bank',
     'name_de_DE': 'Partei Bankverbindungen',
+    'name_es_ES': 'Banco de terceros',
     'version': '0.0.1',
     'author': 'virtual things',
     'email': 'info@virtual-things.biz',
@@ -11,6 +12,9 @@
     Allows the management of bank accounts for parties
 ''',
     'description_de_DE': '''Ermöglicht die Verwaltung von Bankverbindungen für Parteien
+''',
+    'description_es_ES': '''Banco de terceros
+    Permite la gestión de cuentas bancarias de terceros
 ''',
     'depends': [
         'party',
@@ -21,5 +25,6 @@
     ],
     'translation': [
         'de_DE.csv',
+        'es_ES.csv',
     ],
 }
