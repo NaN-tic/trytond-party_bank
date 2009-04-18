@@ -33,7 +33,13 @@ class Bank(ModelSQL, ModelView):
             if ids:
                 args2.append(('bank_code', args[i][1], args[i][2]))
             else:
-                args2.append((self._rec_name, args[i][1], args[i][2]))
+                ids = self.search(cursor, user, [
+                             ('bic', args[i][1], args[i][2]),
+                             ], limit=1, context=context)
+                if ids:
+                    args2.append(('bic', args[i][1], args[i][2]))
+                else:
+                    args2.append((self._rec_name, args[i][1], args[i][2]))
             i += 1
         return args2
 
