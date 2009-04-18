@@ -23,7 +23,6 @@ class Bank(ModelSQL, ModelView):
         return res
 
     def search_rec_name(self, cursor, user, name, args, context=None):
-        print args
         args2 = []
         i = 0
         while i < len(args):
