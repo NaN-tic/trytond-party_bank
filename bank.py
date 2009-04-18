@@ -1,6 +1,7 @@
 #This file is part of Tryton. The COPYRIGHT file at the top level of
 #this repository contains the full copyright notices and license terms.
 from trytond.model import ModelView, ModelSQL, fields
+from trytond.backend import TableHandler
 
 class Bank(ModelSQL, ModelView):
     'Bank'
@@ -52,10 +53,17 @@ class BankAccount(ModelSQL, ModelView):
             string='National Code')
     bic = fields.Function('get_bic', type='char',
             string='BIC/SWIFT')
-    currency = fields.Many2One('currency.currency', 'Currency', required=True)
+    currency = fields.Many2One('currency.currency', 'Currency')
     party = fields.Many2One('party.party', 'Party',
                             ondelete='CASCADE', required=True)
     owner = fields.Char('Differing Owner')
+
+    def init(self, cursor, module_name):
+        super(BankAccount, self).init(cursor, module_name)
+        table = TableHandler(cursor, self, module_name)
+        # Migration for existing databases
+        # Set currency not required
+        table.not_null_action('currency', action='remove')
 
     def get_rec_name(self, cursor, user, ids, name, arg, context=None):
         if not ids:
