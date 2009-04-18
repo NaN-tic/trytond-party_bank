@@ -13,6 +13,30 @@ class Bank(ModelSQL, ModelView):
     bank_code = fields.Char('National Code', select=1)
     bic = fields.Char('BIC/SWIFT', select=1)
 
+    def get_rec_name(self, cursor, user, ids, name, arg, context=None):
+        if not ids:
+            return {}
+        res = {}
+        for bank in self.browse(cursor, user, ids, context=context):
+            res[bank.id] = ", ".join(x for x in [bank.name, bank.bank_code,
+                                                 bank.bic] if x)
+        return res
+
+    def search_rec_name(self, cursor, user, name, args, context=None):
+        print args
+        args2 = []
+        i = 0
+        while i < len(args):
+            ids = self.search(cursor, user, [
+                ('bank_code', args[i][1], args[i][2]),
+                ], limit=1, context=context)
+            if ids:
+                args2.append(('bank_code', args[i][1], args[i][2]))
+            else:
+                args2.append((self._rec_name, args[i][1], args[i][2]))
+            i += 1
+        return args2
+
 Bank()
 
 
