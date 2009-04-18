@@ -89,7 +89,9 @@ class BankAccount(ModelSQL, ModelView):
 
     def on_change_bank(self, cursor, user, ids, vals, context=None):
         bank_obj = self.pool.get('bank.bank')
-        res = {}
+        res = {'bank_code': None,
+               'bic': None}
+
         if vals.get('bank'):
             bank = bank_obj.browse(cursor, user, vals.get('bank'),
                                 context=context)
