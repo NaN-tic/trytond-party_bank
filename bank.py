@@ -59,6 +59,8 @@ class BankAccount(ModelSQL, ModelView):
     owner = fields.Char('Differing Owner')
 
     def get_rec_name(self, cursor, user, ids, name, arg, context=None):
+        if not ids:
+            return {}
         res = {}
         for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = ", ".join(x for x in [account.bank.name,
