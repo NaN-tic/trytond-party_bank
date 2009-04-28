@@ -3,7 +3,6 @@
 from trytond.model import ModelView, ModelSQL, fields
 
 class Party(ModelSQL, ModelView):
-    'Party'
     _name = 'party.party'
     _description = __doc__
 
