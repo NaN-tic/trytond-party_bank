@@ -13,7 +13,9 @@
                     <xpath
                         expr="/form/notebook/page[@id=&quot;accounting&quot;]"
                         position="after">
-                        <page string="Bank Accounts" col="1" id="bank_accounts">
+                        <page string="Bank Accounts" col="1" id="bank_accounts"
+                        states="{'invisible': 
+                        '''not locals().get(&quot;bank_code&quot; ,True)'''}">
                             <field name="bank_accounts"/>
                         </page>
                     </xpath>
