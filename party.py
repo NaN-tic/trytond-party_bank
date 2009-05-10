@@ -3,9 +3,7 @@
 from trytond.model import ModelView, ModelSQL, fields
 
 class Party(ModelSQL, ModelView):
-    'Party'
     _name = 'party.party'
-    _description = __doc__
 
     bank_accounts = fields.One2Many('bank.account', 'party', 'Bank Accounts')
 
