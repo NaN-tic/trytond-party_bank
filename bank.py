@@ -50,6 +50,7 @@ class BankAccount(ModelSQL, ModelView):
     'Bank Account'
     _name = 'bank.account'
     _description = __doc__
+    _rec_name = 'code'
 
     code = fields.Char('Account Number', help='National Standard Code')
     iban = fields.Char('IBAN')
