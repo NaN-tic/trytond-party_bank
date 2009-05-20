@@ -8,6 +8,7 @@ class Bank(ModelSQL, ModelView):
     _name = 'bank.bank'
     _description = __doc__
     _inherits = {'party.party': 'party'}
+    _rec_name = bank_code
 
     party = fields.Many2One('party.party', 'Party', required=True,
             ondelete='CASCADE')
