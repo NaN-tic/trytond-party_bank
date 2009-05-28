@@ -70,8 +70,11 @@ class BankAccount(ModelSQL, ModelView):
         super(BankAccount, self).init(cursor, module_name)
         table = TableHandler(cursor, self, module_name)
         # Migration for existing databases
-        # Set currency not required
+        # Set column 'currency' not required
         table.not_null_action('currency', action='remove')
+        # Remove column 'name'
+        if table.column_exist('name'):
+            table.drop_column('name', exception=True)
 
     def get_rec_name(self, cursor, user, ids, name, arg, context=None):
         if not ids:
