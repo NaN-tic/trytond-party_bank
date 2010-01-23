@@ -4,7 +4,7 @@
     'name': 'BETA: Party Bank',
     'name_de_DE': 'BETA: Partei Bankverbindungen',
     'name_es_ES': 'BETA: Banco de terceros',
-    'version': '1.1.0',
+    'version': '1.5.0',
     'author': 'virtual things',
     'email': 'info@virtual-things.biz',
     'website': 'http://www.virtual-things.biz/',
