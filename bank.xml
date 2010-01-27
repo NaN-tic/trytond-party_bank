@@ -43,6 +43,7 @@
         </record>
         <record model="ir.action.act_window" id="act_bank_view">
             <field name="name">Banks</field>
+            <field name="context">{'party_role': 'bank'}</field>
             <field name="res_model">bank.bank</field>
             <field name="view_type">form</field>
         </record>
