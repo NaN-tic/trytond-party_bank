@@ -14,8 +14,7 @@
                         position="after">
                         <page string="Bank Accounts" col="1" id="bank_accounts"
 				states="{'invisible':
-					Or(Not(Eval('bank_code'), True),
-					Eval('bank_code'), False)}">
+					Or(Not(Eval('bank_code', True)), Eval('bank_code', False))}">
                             <field name="bank_accounts"/>
                         </page>
                     </xpath>
