@@ -2,6 +2,7 @@
 #this repository contains the full copyright notices and license terms.
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.backend import TableHandler
+from trytond.pyson import Not, Eval, Bool
 
 class Bank(ModelSQL, ModelView):
     'Bank'
@@ -12,8 +13,14 @@ class Bank(ModelSQL, ModelView):
 
     party = fields.Many2One('party.party', 'Party', required=True,
             ondelete='CASCADE')
-    bank_code = fields.Char('National Code', select=1)
-    bic = fields.Char('BIC/SWIFT', select=1)
+    bank_code = fields.Char('National Code', select=1,
+            states={
+                'required': Not(Bool(Eval('bic')))
+                }, depends=['bic'])
+    bic = fields.Char('BIC/SWIFT', select=1,
+            states={
+                'required': Not(Bool(Eval('bank_code')))
+                }, depends=['bank_code'])
 
     def get_rec_name(self, cursor, user, ids, name, arg, context=None):
         res = {}
