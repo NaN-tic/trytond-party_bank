@@ -66,8 +66,14 @@ class BankAccount(ModelSQL, ModelView):
     _description = __doc__
     _rec_name = 'code'
 
-    code = fields.Char('Account Number', help='National Standard Code')
-    iban = fields.Char('IBAN')
+    code = fields.Char('Account Number', help='National Standard Code',
+            states={
+                'required': Not(Bool(Eval('iban')))
+                }, depends=['iban'])
+    iban = fields.Char('IBAN',
+            states={
+                'required': Not(Bool(Eval('code')))
+                }, depends=['code'])
     bank = fields.Many2One('bank.bank', 'Bank', required=True,
             on_change=['bank'], context={'is_bank': True})
     bank_code = fields.Function('get_bank_code', type='char',
