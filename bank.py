@@ -62,7 +62,7 @@ class BankAccount(ModelSQL, ModelView):
     code = fields.Char('Account Number', help='National Standard Code')
     iban = fields.Char('IBAN')
     bank = fields.Many2One('bank.bank', 'Bank', required=True,
-            on_change=['bank'])
+            on_change=['bank'], context={'is_bank': True})
     bank_code = fields.Function('get_bank_code', type='char',
             string='National Code')
     bic = fields.Function('get_bic', type='char', string='BIC/SWIFT')

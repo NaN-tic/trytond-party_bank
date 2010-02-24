@@ -13,7 +13,7 @@
                         expr="/form/notebook/page[@id=&quot;accounting&quot;]"
                         position="after">
                         <page string="Bank Accounts" col="1" id="bank_accounts"
-				states="{'invisible':Equal(Get(Eval('context', {}), 'party_role'), 'bank')}">
+                                states="{'invisible': Bool(Get(Eval('context', {}), 'is_bank', 0))}">
                             <field name="bank_accounts"/>
                         </page>
                     </xpath>
