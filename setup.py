@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-#This file is part of Tryton.  The COPYRIGHT file at the top level of
-#this repository contains the full copyright notices and license terms.
+# This file is part of Tryton.  The COPYRIGHT file at the top level of
+# this repository contains the full copyright notices and license terms.
 
 from setuptools import setup
 import re
@@ -30,10 +30,11 @@ setup(name='trytond_party_bank',
     package_dir={'trytond.modules.party_bank': '.'},
     packages=[
         'trytond.modules.party_bank',
+        'trytond.modules.party_bank.tests',
     ],
     package_data={
         'trytond.modules.party_bank': info.get('xml', []) \
-                + info.get('translation', [])
+                + info.get('translation', []),
     },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -41,13 +42,15 @@ setup(name='trytond_party_bank',
         'Intended Audience :: Developers',
         'Intended Audience :: Financial and Insurance Industry',
         'Intended Audience :: Legal Industry',
-        'Intended Audience :: Manufacturing',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Natural Language :: English',
+        'Natural Language :: French',
         'Natural Language :: German',
+        'Natural Language :: Spanish',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Topic :: Office/Business',
+        'Topic :: Office/Business :: Financial :: Accounting',
     ],
     license='GPL-3',
     install_requires=requires,
@@ -56,4 +59,6 @@ setup(name='trytond_party_bank',
     [trytond.modules]
     party_bank = trytond.modules.party_bank
     """,
+    test_suite='tests',
+    test_loader='trytond.test_loader:Loader',
 )
