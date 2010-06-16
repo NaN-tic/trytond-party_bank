@@ -15,7 +15,7 @@ class Bank(ModelSQL, ModelView):
     bank_code = fields.Char('National Code', select=1)
     bic = fields.Char('BIC/SWIFT', select=1)
 
-    def get_rec_name(self, cursor, user, ids, name, arg, context=None):
+    def get_rec_name(self, cursor, user, ids, name, context=None):
         if not ids:
             return {}
         res = {}
@@ -63,10 +63,9 @@ class BankAccount(ModelSQL, ModelView):
     iban = fields.Char('IBAN')
     bank = fields.Many2One('bank.bank', 'Bank', required=True,
                            on_change=['bank'])
-    bank_code = fields.Function('get_bank_code', type='char',
-            string='National Code')
-    bic = fields.Function('get_bic', type='char',
-            string='BIC/SWIFT')
+    bank_code = fields.Function(fields.Char('National Code'),
+            'get_bank_code')
+    bic = fields.Function(fields.Char('BIC/SWIFT'), 'get_bic')
     currency = fields.Many2One('currency.currency', 'Currency')
     party = fields.Many2One('party.party', 'Party',
                             ondelete='CASCADE', required=True)
@@ -82,7 +81,7 @@ class BankAccount(ModelSQL, ModelView):
         if table.column_exist('name'):
             table.drop_column('name', exception=True)
 
-    def get_rec_name(self, cursor, user, ids, name, arg, context=None):
+    def get_rec_name(self, cursor, user, ids, name, context=None):
         if not ids:
             return {}
         res = {}
@@ -92,13 +91,13 @@ class BankAccount(ModelSQL, ModelView):
                         account.bic] if x)
         return res
 
-    def get_bank_code(self, cursor, user, ids, name, arg, context=None):
+    def get_bank_code(self, cursor, user, ids, name, context=None):
         res = {}
         for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = account.bank.bank_code
         return res
 
-    def get_bic(self, cursor, user, ids, name, arg, context=None):
+    def get_bic(self, cursor, user, ids, name, context=None):
         res = {}
         for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = account.bank.bic
