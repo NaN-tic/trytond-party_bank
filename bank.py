@@ -24,31 +24,25 @@ class Bank(ModelSQL, ModelView):
                                                  bank.bic] if x)
         return res
 
-    def search_rec_name(self, cursor, user, name, args, context=None):
-        args2 = []
-        i = 0
-        while i < len(args):
+    def search_rec_name(self, cursor, user, name, clause, context=None):
+        ids = self.search(cursor, user, [
+            ('name',) + clause[1:],
+            ], limit=1, context=context)
+        if ids:
+            return [('name',) + clause[1:]]
+        else:
             ids = self.search(cursor, user, [
-                ('name', args[i][1], args[i][2]),
+                ('bank_code',) + clause[1:],
                 ], limit=1, context=context)
             if ids:
-                args2.append(('name', args[i][1], args[i][2]))
+                return [('bank_code',) + clause[1:]]
             else:
                 ids = self.search(cursor, user, [
-                    ('bank_code', args[i][1], args[i][2]),
+                    ('bic',) + clause[1:],
                     ], limit=1, context=context)
                 if ids:
-                    args2.append(('bank_code', args[i][1], args[i][2]))
-                else:
-                    ids = self.search(cursor, user, [
-                                 ('bic', args[i][1], args[i][2]),
-                                 ], limit=1, context=context)
-                    if ids:
-                        args2.append(('bic', args[i][1], args[i][2]))
-                    else:
-                        args2.append((self._rec_name, args[i][1], args[i][2]))
-            i += 1
-        return args2
+                    return [('bic',) + clause[1:]]
+        return [(self._rec_name,) + clause[1:]]
 
 Bank()
 
