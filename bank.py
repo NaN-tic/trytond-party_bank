@@ -2,6 +2,7 @@
 #this repository contains the full copyright notices and license terms.
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.backend import TableHandler
+from trytond.pyson import Not, Eval, Bool
 
 class Bank(ModelSQL, ModelView):
     'Bank'
@@ -12,16 +13,22 @@ class Bank(ModelSQL, ModelView):
 
     party = fields.Many2One('party.party', 'Party', required=True,
             ondelete='CASCADE')
-    bank_code = fields.Char('National Code', select=1)
-    bic = fields.Char('BIC/SWIFT', select=1)
+    bank_code = fields.Char('National Code', select=1,
+            states={
+                'required': Not(Bool(Eval('bic')))
+                }, depends=['bic'])
+    bic = fields.Char('BIC/SWIFT', select=1,
+            states={
+                'required': Not(Bool(Eval('bank_code')))
+                }, depends=['bank_code'])
 
     def get_rec_name(self, cursor, user, ids, name, context=None):
-        if not ids:
-            return {}
         res = {}
+        if not ids:
+            return res
         for bank in self.browse(cursor, user, ids, context=context):
-            res[bank.id] = ", ".join(x for x in [bank.name, bank.bank_code,
-                                                 bank.bic] if x)
+            res[bank.id] = ", ".join(
+                     x for x in [bank.name, bank.bank_code, bank.bic] if x)
         return res
 
     def search_rec_name(self, cursor, user, name, clause, context=None):
@@ -53,16 +60,22 @@ class BankAccount(ModelSQL, ModelView):
     _description = __doc__
     _rec_name = 'code'
 
-    code = fields.Char('Account Number', help='National Standard Code')
-    iban = fields.Char('IBAN')
+    code = fields.Char('Account Number', help='National Standard Code',
+            states={
+                'required': Not(Bool(Eval('iban')))
+                }, depends=['iban'])
+    iban = fields.Char('IBAN',
+            states={
+                'required': Not(Bool(Eval('code')))
+                }, depends=['code'])
     bank = fields.Many2One('bank.bank', 'Bank', required=True,
-                           on_change=['bank'])
+            on_change=['bank'], context={'is_bank': True})
     bank_code = fields.Function(fields.Char('National Code'),
             'get_bank_code')
     bic = fields.Function(fields.Char('BIC/SWIFT'), 'get_bic')
     currency = fields.Many2One('currency.currency', 'Currency')
-    party = fields.Many2One('party.party', 'Party',
-                            ondelete='CASCADE', required=True)
+    party = fields.Many2One('party.party', 'Party', ondelete='CASCADE',
+            required=True)
     owner = fields.Char('Differing Owner')
 
     def init(self, cursor, module_name):
@@ -76,13 +89,13 @@ class BankAccount(ModelSQL, ModelView):
             table.drop_column('name', exception=True)
 
     def get_rec_name(self, cursor, user, ids, name, context=None):
-        if not ids:
-            return {}
         res = {}
+        if not ids:
+            return res
         for account in self.browse(cursor, user, ids, context=context):
             res[account.id] = ", ".join(x for x in [account.bank.name,
-                        account.code, account.bank_code, account.iban,
-                        account.bic] if x)
+                    account.code, account.bank_code, account.iban,
+                    account.bic] if x)
         return res
 
     def get_bank_code(self, cursor, user, ids, name, context=None):
@@ -99,12 +112,13 @@ class BankAccount(ModelSQL, ModelView):
 
     def on_change_bank(self, cursor, user, vals, context=None):
         bank_obj = self.pool.get('bank.bank')
-        res = {'bank_code': None,
-               'bic': None}
-
+        res = {
+           'bank_code': False,
+           'bic': False
+           }
         if vals.get('bank'):
-            bank = bank_obj.browse(cursor, user, vals.get('bank'),
-                                context=context)
+            bank = bank_obj.browse(cursor, user, vals['bank'],
+                    context=context)
             if bank:
                 res['bank_code'] = bank.bank_code
                 res['bic'] = bank.bic

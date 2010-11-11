@@ -43,6 +43,7 @@
         </record>
         <record model="ir.action.act_window" id="act_bank_view">
             <field name="name">Banks</field>
+            <field name="context">{'is_bank': True}</field>
             <field name="res_model">bank.bank</field>
             <field name="view_type">form</field>
         </record>
@@ -60,6 +61,7 @@
                     action="act_bank_view" id="menu_bank_view"/>
         <record model="ir.action.act_window" id="act_bank_view2">
             <field name="name">New Bank</field>
+            <field name="context">{'is_bank': True}</field>
             <field name="res_model">bank.bank</field>
             <field name="view_type">form</field>
         </record>
