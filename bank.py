@@ -3,6 +3,8 @@
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.backend import TableHandler
 from trytond.pyson import Not, Eval, Bool
+from trytond.transaction import Transaction
+
 
 class Bank(ModelSQL, ModelView):
     'Bank'
@@ -22,31 +24,31 @@ class Bank(ModelSQL, ModelView):
                 'required': Not(Bool(Eval('bank_code')))
                 }, depends=['bank_code'])
 
-    def get_rec_name(self, cursor, user, ids, name, context=None):
+    def get_rec_name(self, ids, name):
         res = {}
         if not ids:
             return res
-        for bank in self.browse(cursor, user, ids, context=context):
+        for bank in self.browse(ids):
             res[bank.id] = ", ".join(
                      x for x in [bank.name, bank.bank_code, bank.bic] if x)
         return res
 
-    def search_rec_name(self, cursor, user, name, clause, context=None):
-        ids = self.search(cursor, user, [
+    def search_rec_name(self, name, clause):
+        ids = self.search([
             ('name',) + clause[1:],
-            ], limit=1, context=context)
+            ], limit=1)
         if ids:
             return [('name',) + clause[1:]]
         else:
-            ids = self.search(cursor, user, [
+            ids = self.search([
                 ('bank_code',) + clause[1:],
-                ], limit=1, context=context)
+                ], limit=1)
             if ids:
                 return [('bank_code',) + clause[1:]]
             else:
-                ids = self.search(cursor, user, [
+                ids = self.search([
                     ('bic',) + clause[1:],
-                    ], limit=1, context=context)
+                    ], limit=1)
                 if ids:
                     return [('bic',) + clause[1:]]
         return [(self._rec_name,) + clause[1:]]
@@ -78,8 +80,9 @@ class BankAccount(ModelSQL, ModelView):
             required=True)
     owner = fields.Char('Differing Owner')
 
-    def init(self, cursor, module_name):
-        super(BankAccount, self).init(cursor, module_name)
+    def init(self, module_name):
+        super(BankAccount, self).init(module_name)
+        cursor = Transaction().cursor
         table = TableHandler(cursor, self, module_name)
         # Migration for existing databases
         # Set column 'currency' not required
@@ -88,37 +91,36 @@ class BankAccount(ModelSQL, ModelView):
         if table.column_exist('name'):
             table.drop_column('name', exception=True)
 
-    def get_rec_name(self, cursor, user, ids, name, context=None):
+    def get_rec_name(self, ids, name):
         res = {}
         if not ids:
             return res
-        for account in self.browse(cursor, user, ids, context=context):
+        for account in self.browse(ids):
             res[account.id] = ", ".join(x for x in [account.bank.name,
                     account.code, account.bank_code, account.iban,
                     account.bic] if x)
         return res
 
-    def get_bank_code(self, cursor, user, ids, name, context=None):
+    def get_bank_code(self, ids, name):
         res = {}
-        for account in self.browse(cursor, user, ids, context=context):
+        for account in self.browse(ids):
             res[account.id] = account.bank.bank_code
         return res
 
-    def get_bic(self, cursor, user, ids, name, context=None):
+    def get_bic(self, ids, name):
         res = {}
-        for account in self.browse(cursor, user, ids, context=context):
+        for account in self.browse(ids):
             res[account.id] = account.bank.bic
         return res
 
-    def on_change_bank(self, cursor, user, vals, context=None):
+    def on_change_bank(self, vals):
         bank_obj = self.pool.get('bank.bank')
         res = {
            'bank_code': False,
            'bic': False
            }
         if vals.get('bank'):
-            bank = bank_obj.browse(cursor, user, vals['bank'],
-                    context=context)
+            bank = bank_obj.browse(vals['bank'])
             if bank:
                 res['bank_code'] = bank.bank_code
                 res['bic'] = bank.bic
