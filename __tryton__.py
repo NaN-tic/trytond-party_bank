@@ -4,7 +4,7 @@
     'name': 'Party Bank',
     'name_de_DE': 'Partei Bankverbindungen',
     'name_es_ES': 'Banco de terceros',
-    'version': '1.7.2',
+    'version': '1.8.0',
     'author': 'virtual things',
     'email': 'info@virtual-things.biz',
     'website': 'http://www.virtual-things.biz/',
