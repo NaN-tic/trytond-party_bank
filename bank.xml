@@ -45,7 +45,6 @@
             <field name="name">Banks</field>
             <field name="context">{'is_bank': True}</field>
             <field name="res_model">bank.bank</field>
-            <field name="view_type">form</field>
         </record>
         <record model="ir.action.act_window.view" id="act_tree_bank_view">
             <field name="sequence" eval="10"/>
@@ -63,7 +62,6 @@
             <field name="name">New Bank</field>
             <field name="context">{'is_bank': True}</field>
             <field name="res_model">bank.bank</field>
-            <field name="view_type">form</field>
         </record>
         <record model="ir.action.act_window.view" id="act_form_bank_view2">
             <field name="sequence" eval="10"/>
