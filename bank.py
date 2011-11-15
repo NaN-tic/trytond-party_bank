@@ -4,6 +4,7 @@ from trytond.model import ModelView, ModelSQL, fields
 from trytond.backend import TableHandler
 from trytond.pyson import Not, Eval, Bool
 from trytond.transaction import Transaction
+from trytond.pool import Pool
 
 
 class Bank(ModelSQL, ModelView):
@@ -114,7 +115,7 @@ class BankAccount(ModelSQL, ModelView):
         return res
 
     def on_change_bank(self, vals):
-        bank_obj = self.pool.get('bank.bank')
+        bank_obj = Pool().get('bank.bank')
         res = {
            'bank_code': False,
            'bic': False
