@@ -36,23 +36,23 @@ class Bank(ModelSQL, ModelView):
 
     def search_rec_name(self, name, clause):
         ids = self.search([
-            ('name',) + clause[1:],
+            ('name',) + tuple(clause[1:]),
             ], limit=1)
         if ids:
-            return [('name',) + clause[1:]]
+            return [('name',) + tuple(clause[1:])]
         else:
             ids = self.search([
-                ('bank_code',) + clause[1:],
+                ('bank_code',) + tuple(clause[1:]),
                 ], limit=1)
             if ids:
-                return [('bank_code',) + clause[1:]]
+                return [('bank_code',) + tuple(clause[1:])]
             else:
                 ids = self.search([
-                    ('bic',) + clause[1:],
+                    ('bic',) + tuple(clause[1:]),
                     ], limit=1)
                 if ids:
-                    return [('bic',) + clause[1:]]
-        return [(self._rec_name,) + clause[1:]]
+                    return [('bic',) + tuple(clause[1:])]
+        return [(self._rec_name,) + tuple(clause[1:])]
 
 Bank()
 
