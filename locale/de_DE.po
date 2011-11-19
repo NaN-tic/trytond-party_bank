@@ -1,0 +1,111 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:bank.account,bank:0"
+msgid "Bank"
+msgstr "Bank"
+
+msgctxt "field:bank.account,bank_code:0"
+msgid "National Code"
+msgstr "Bankleitzahl"
+
+msgctxt "field:bank.account,bic:0"
+msgid "BIC/SWIFT"
+msgstr "BIC/SWIFT"
+
+msgctxt "field:bank.account,code:0"
+msgid "Account Number"
+msgstr "Kontonummer"
+
+msgctxt "field:bank.account,currency:0"
+msgid "Currency"
+msgstr "Währung"
+
+msgctxt "field:bank.account,iban:0"
+msgid "IBAN"
+msgstr "IBAN"
+
+msgctxt "field:bank.account,owner:0"
+msgid "Differing Owner"
+msgstr "Abweichender Kontoinhaber"
+
+msgctxt "field:bank.account,party:0"
+msgid "Party"
+msgstr "Partei"
+
+msgctxt "field:bank.account,rec_name:0"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "field:bank.bank,bank_code:0"
+msgid "National Code"
+msgstr "Bankleitzahl"
+
+msgctxt "field:bank.bank,bic:0"
+msgid "BIC/SWIFT"
+msgstr "BIC/SWIFT"
+
+msgctxt "field:bank.bank,party:0"
+msgid "Party"
+msgstr "Partei"
+
+msgctxt "field:bank.bank,rec_name:0"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "field:party.party,bank_accounts:0"
+msgid "Bank Accounts"
+msgstr "Bankkonten"
+
+msgctxt "help:bank.account,code:0"
+msgid "National Standard Code"
+msgstr "Bankleitzahl"
+
+msgctxt "model:bank.account,name:0"
+msgid "Bank Account"
+msgstr "Bankkonto"
+
+msgctxt "model:bank.bank,name:0"
+msgid "Bank"
+msgstr "Bank"
+
+msgctxt "model:ir.action,name:act_bank_view"
+msgid "Banks"
+msgstr "Banken"
+
+msgctxt "model:ir.action,name:act_bank_view2"
+msgid "New Bank"
+msgstr "Neue Bank"
+
+msgctxt "model:ir.ui.menu,name:menu_bank_view"
+msgid "Banks"
+msgstr "Banken"
+
+msgctxt "model:ir.ui.menu,name:menu_bank_view2"
+msgid "New Bank"
+msgstr "Neue Bank"
+
+msgctxt "model:party.party,name:0"
+msgid "Party"
+msgstr "Partei"
+
+msgctxt "view:bank.account:0"
+msgid "Bank Account"
+msgstr "Bankkonto"
+
+msgctxt "view:bank.account:0"
+msgid "Bank Accounts"
+msgstr "Bankkonten"
+
+msgctxt "view:bank.bank:0"
+msgid "Bank"
+msgstr "Bank"
+
+msgctxt "view:bank.bank:0"
+msgid "Banks"
+msgstr "Banken"
+
+msgctxt "view:party.party:0"
+msgid "Bank Accounts"
+msgstr "Bankkonten"
