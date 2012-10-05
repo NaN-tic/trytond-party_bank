@@ -27,6 +27,6 @@
     ],
     'translation': [
         'locale/de_DE.po',
-        'es_ES.csv',
+        'locale/es_ES.po',
     ],
 }

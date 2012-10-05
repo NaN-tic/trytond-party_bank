@@ -1,0 +1,147 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:bank.account,bank:"
+msgid "Bank"
+msgstr "Banco"
+
+msgctxt "field:bank.account,bank_code:"
+msgid "National Code"
+msgstr "Código nacional"
+
+msgctxt "field:bank.account,bic:"
+msgid "BIC/SWIFT"
+msgstr "BIC/SWIFT"
+
+msgctxt "field:bank.account,code:"
+msgid "Account Number"
+msgstr "Número de cuenta"
+
+msgctxt "field:bank.account,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:bank.account,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:bank.account,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+msgctxt "field:bank.account,iban:"
+msgid "IBAN"
+msgstr "IBAN"
+
+msgctxt "field:bank.account,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:bank.account,owner:"
+msgid "Differing Owner"
+msgstr "Otro propietario"
+
+msgctxt "field:bank.account,party:"
+msgid "Party"
+msgstr "Terceros"
+
+msgctxt "field:bank.account,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:bank.account,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:bank.account,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:bank.bank,bank_code:"
+msgid "National Code"
+msgstr "Código nacional"
+
+msgctxt "field:bank.bank,bic:"
+msgid "BIC/SWIFT"
+msgstr "BIC/SWIFT"
+
+msgctxt "field:bank.bank,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:bank.bank,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:bank.bank,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:bank.bank,party:"
+msgid "Party"
+msgstr "Terceros"
+
+msgctxt "field:bank.bank,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:bank.bank,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:bank.bank,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:party.party,bank_accounts:"
+msgid "Bank Accounts"
+msgstr "Cuentas bancarias"
+
+msgctxt "help:bank.account,code:"
+msgid "National Standard Code"
+msgstr "Código nacional estandard"
+
+msgctxt "model:bank.account,name:"
+msgid "Bank Account"
+msgstr "Cuentas bancarias"
+
+msgctxt "model:bank.bank,name:"
+msgid "Bank"
+msgstr "Banco"
+
+msgctxt "model:ir.action,name:act_bank_view"
+msgid "Banks"
+msgstr "Bancos"
+
+msgctxt "model:ir.action,name:act_bank_view2"
+msgid "New Bank"
+msgstr "Nuevo banco"
+
+msgctxt "model:ir.ui.menu,name:menu_bank_view"
+msgid "Banks"
+msgstr "Bancos"
+
+msgctxt "model:ir.ui.menu,name:menu_bank_view2"
+msgid "New Bank"
+msgstr "Nuevo banco"
+
+msgctxt "view:bank.account:"
+msgid "Bank Account"
+msgstr "Cuentas bancarias"
+
+msgctxt "view:bank.account:"
+msgid "Bank Accounts"
+msgstr "Cuentas bancarias"
+
+msgctxt "view:bank.bank:"
+msgid "Bank"
+msgstr "Banco"
+
+msgctxt "view:bank.bank:"
+msgid "Banks"
+msgstr "Bancos"
+
+msgctxt "view:party.party:"
+msgid "Bank Accounts"
+msgstr "Cuentas bancarias"
