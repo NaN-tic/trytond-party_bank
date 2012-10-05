@@ -1,0 +1,147 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:bank.account,bank:"
+msgid "Bank"
+msgstr "Banc"
+
+msgctxt "field:bank.account,bank_code:"
+msgid "National Code"
+msgstr "Codi nacional"
+
+msgctxt "field:bank.account,bic:"
+msgid "BIC/SWIFT"
+msgstr "BIC/SWIFT"
+
+msgctxt "field:bank.account,code:"
+msgid "Account Number"
+msgstr "Número de compte"
+
+msgctxt "field:bank.account,create_date:"
+msgid "Create Date"
+msgstr "Data creació"
+
+msgctxt "field:bank.account,create_uid:"
+msgid "Create User"
+msgstr "Usuari creació"
+
+msgctxt "field:bank.account,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+msgctxt "field:bank.account,iban:"
+msgid "IBAN"
+msgstr "IBAN"
+
+msgctxt "field:bank.account,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:bank.account,owner:"
+msgid "Differing Owner"
+msgstr "Altre propietari"
+
+msgctxt "field:bank.account,party:"
+msgid "Party"
+msgstr "Tercers"
+
+msgctxt "field:bank.account,rec_name:"
+msgid "Name"
+msgstr "Nom"
+
+msgctxt "field:bank.account,write_date:"
+msgid "Write Date"
+msgstr "Data creació"
+
+msgctxt "field:bank.account,write_uid:"
+msgid "Write User"
+msgstr "Data creació"
+
+msgctxt "field:bank.bank,bank_code:"
+msgid "National Code"
+msgstr "Codi nacional"
+
+msgctxt "field:bank.bank,bic:"
+msgid "BIC/SWIFT"
+msgstr "BIC/SWIFT"
+
+msgctxt "field:bank.bank,create_date:"
+msgid "Create Date"
+msgstr "Data creació"
+
+msgctxt "field:bank.bank,create_uid:"
+msgid "Create User"
+msgstr "Usuari creació"
+
+msgctxt "field:bank.bank,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:bank.bank,party:"
+msgid "Party"
+msgstr "Tercers"
+
+msgctxt "field:bank.bank,rec_name:"
+msgid "Name"
+msgstr "Nom"
+
+msgctxt "field:bank.bank,write_date:"
+msgid "Write Date"
+msgstr "Data creació"
+
+msgctxt "field:bank.bank,write_uid:"
+msgid "Write User"
+msgstr "Data creació"
+
+msgctxt "field:party.party,bank_accounts:"
+msgid "Bank Accounts"
+msgstr "Comptes bancaris"
+
+msgctxt "help:bank.account,code:"
+msgid "National Standard Code"
+msgstr "Codi nacional estàndard"
+
+msgctxt "model:bank.account,name:"
+msgid "Bank Account"
+msgstr "Comptes bancaris"
+
+msgctxt "model:bank.bank,name:"
+msgid "Bank"
+msgstr "Banc"
+
+msgctxt "model:ir.action,name:act_bank_view"
+msgid "Banks"
+msgstr "Bancs"
+
+msgctxt "model:ir.action,name:act_bank_view2"
+msgid "New Bank"
+msgstr "Nou banc"
+
+msgctxt "model:ir.ui.menu,name:menu_bank_view"
+msgid "Banks"
+msgstr "Bancs"
+
+msgctxt "model:ir.ui.menu,name:menu_bank_view2"
+msgid "New Bank"
+msgstr "Nou banc"
+
+msgctxt "view:bank.account:"
+msgid "Bank Account"
+msgstr "Comptes bancaris"
+
+msgctxt "view:bank.account:"
+msgid "Bank Accounts"
+msgstr "Comptes bancaris"
+
+msgctxt "view:bank.bank:"
+msgid "Bank"
+msgstr "Banc"
+
+msgctxt "view:bank.bank:"
+msgid "Banks"
+msgstr "Bancs"
+
+msgctxt "view:party.party:"
+msgid "Bank Accounts"
+msgstr "Comptes bancaris"

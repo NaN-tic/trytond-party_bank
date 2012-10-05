@@ -2,6 +2,7 @@
 #this repository contains the full copyright notices and license terms.
 {
     'name': 'Party Bank',
+    'name_ca_ES': 'Banc de tercers',
     'name_de_DE': 'Partei Bankverbindungen',
     'name_es_ES': 'Banco de terceros',
     'version': '2.1.2',
@@ -10,6 +11,9 @@
     'website': 'http://www.virtual-things.biz/',
     'description': '''
     - Allows the management of bank accounts for parties
+    ''',
+    'description_ca_ES': '''
+    - Permet la gestió de comptes bancaris de tercers
     ''',
     'description_de_DE': '''
     - Ermöglicht die Verwaltung von Bankverbindungen für Parteien
@@ -26,6 +30,7 @@
         'party.xml'
     ],
     'translation': [
+        'locale/ca_ES.po',
         'locale/de_DE.po',
         'locale/es_ES.po',
     ],
