@@ -81,10 +81,10 @@
             <field name="arch" type="xml">
                 <![CDATA[
                 <form string="Bank Account">
-                    <label name="currency"/>
-                    <field name="currency"/>
                     <label name="bank"/>
                     <field name="bank"/>
+                    <label name="currency"/>
+                    <field name="currency"/>
                     <label name="code"/>
                     <field name="code"/>
                     <label name="bank_code"/>
@@ -93,9 +93,21 @@
                     <field name="iban"/>
                     <label name="bic"/>
                     <field name="bic"/>
+                    <label name="default"/>
+                    <field name="default"/>
                     <separator name="owner" colspan="4"/>
                     <label name="owner"/>
                     <field name="owner"/>
+                    <label name="street"/>
+                    <field name="street"/>
+                    <label name="zip"/>
+                    <field name="zip"/>
+                    <label name="city"/>
+                    <field name="city"/>
+                    <label name="country"/>
+                    <field name="country"/>
+                    <label name="subdivision"/>
+                    <field name="subdivision"/>
                 </form>
                 ]]>
             </field>
@@ -107,6 +119,7 @@
                 <![CDATA[
                 <tree string="Bank Accounts">
                     <field name="code"/>
+                    <field name="default"/>
                     <field name="bank_code"/>
                     <field name="iban"/>
                     <field name="bic"/>

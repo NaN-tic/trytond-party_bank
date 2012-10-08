@@ -63,6 +63,7 @@ class BankAccount(ModelSQL, ModelView):
     _description = __doc__
     _rec_name = 'code'
 
+    default = fields.Boolean('Default', help="Default Bank Account")
     code = fields.Char('Account Number', help='National Standard Code',
             states={
                 'required': Not(Bool(Eval('iban')))
@@ -80,6 +81,14 @@ class BankAccount(ModelSQL, ModelView):
     party = fields.Many2One('party.party', 'Party', ondelete='CASCADE',
             required=True)
     owner = fields.Char('Differing Owner')
+    street = fields.Char('Street')
+    zip = fields.Char('Zip')
+    city = fields.Char('City')
+    country = fields.Many2One('country.country', 'Country',
+        on_change=['country', 'subdivision'])
+    subdivision = fields.Many2One("country.subdivision",
+            'Subdivision', domain=[('country', '=', Eval('country'))],
+            depends=['country'])
 
     def init(self, module_name):
         super(BankAccount, self).init(module_name)
@@ -91,6 +100,9 @@ class BankAccount(ModelSQL, ModelView):
         # Remove column 'name'
         if table.column_exist('name'):
             table.drop_column('name', exception=True)
+
+    def default_default(self):
+        return True
 
     def get_rec_name(self, ids, name):
         res = {}
@@ -126,5 +138,15 @@ class BankAccount(ModelSQL, ModelView):
                 res['bank_code'] = bank.bank_code
                 res['bic'] = bank.bic
         return res
+
+    def on_change_country(self, vals):
+        subdivision_obj = Pool().get('country.subdivision')
+        result = dict((k, vals.get(k))
+            for k in ('country', 'subdivision'))
+        if vals['subdivision']:
+            subdivision = subdivision_obj.browse(vals['subdivision'])
+            if subdivision.country.id != vals['country']:
+                result['subdivision'] = None
+        return result
 
 BankAccount()
