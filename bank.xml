@@ -58,23 +58,6 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         </record>
         <menuitem parent="party.menu_party" sequence="50"
                     action="act_bank_view" id="menu_bank_view"/>
-        <record model="ir.action.act_window" id="act_bank_view2">
-            <field name="name">New Bank</field>
-            <field name="context">{'is_bank': True}</field>
-            <field name="res_model">bank.bank</field>
-        </record>
-        <record model="ir.action.act_window.view" id="act_form_bank_view2">
-            <field name="sequence" eval="10"/>
-            <field name="view" ref="bank_view_form"/>
-            <field name="act_window" ref="act_bank_view2"/>
-        </record>
-        <record model="ir.action.act_window.view" id="act_tree_bank_view2">
-            <field name="sequence" eval="20"/>
-            <field name="view" ref="bank_view_tree"/>
-            <field name="act_window" ref="act_bank_view2"/>
-        </record>
-        <menuitem parent="menu_bank_view"
-                    action="act_bank_view2" id="menu_bank_view2"/>
         <record model="ir.ui.view" id="bank_account_view_form">
             <field name="model">bank.account</field>
             <field name="type">form</field>
