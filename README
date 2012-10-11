@@ -2,7 +2,6 @@ trytond_party_bank
 =============================
 
 Module for adding banks to parties for the Tryton application platform.
-See __tryton__.py
 
 Installing
 ----------

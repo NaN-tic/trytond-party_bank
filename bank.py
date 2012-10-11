@@ -1,16 +1,17 @@
-#This file is part of Tryton. The COPYRIGHT file at the top level of
-#this repository contains the full copyright notices and license terms.
+#This file is part party_bank module for Tryton.
+#The COPYRIGHT file at the top level of this repository contains 
+#the full copyright notices and license terms.
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.backend import TableHandler
 from trytond.pyson import Not, Eval, Bool
 from trytond.transaction import Transaction
 from trytond.pool import Pool
 
+__all__ = ['Bank', 'BankAccount']
 
 class Bank(ModelSQL, ModelView):
     'Bank'
-    _name = 'bank.bank'
-    _description = __doc__
+    __name__ = 'bank.bank'
     _inherits = {'party.party': 'party'}
     _rec_name = 'bank_code'
 
@@ -25,42 +26,41 @@ class Bank(ModelSQL, ModelView):
                 'required': Not(Bool(Eval('bank_code')))
                 }, depends=['bank_code'])
 
-    def get_rec_name(self, ids, name):
+    @classmethod
+    def get_rec_name(cls, records, name):
         res = {}
-        if not ids:
+        if not records:
             return res
-        for bank in self.browse(ids):
+        for bank in records:
             res[bank.id] = ", ".join(
                      x for x in [bank.name, bank.bank_code, bank.bic] if x)
         return res
 
-    def search_rec_name(self, name, clause):
-        ids = self.search([
+    @classmethod
+    def search_rec_name(cls, name, clause):
+        ids = cls.search([
             ('name',) + tuple(clause[1:]),
             ], limit=1)
         if ids:
             return [('name',) + tuple(clause[1:])]
         else:
-            ids = self.search([
+            ids = cls.search([
                 ('bank_code',) + tuple(clause[1:]),
                 ], limit=1)
             if ids:
                 return [('bank_code',) + tuple(clause[1:])]
             else:
-                ids = self.search([
+                ids = cls.search([
                     ('bic',) + tuple(clause[1:]),
                     ], limit=1)
                 if ids:
                     return [('bic',) + tuple(clause[1:])]
-        return [(self._rec_name,) + tuple(clause[1:])]
-
-Bank()
+        return [(cls._rec_name,) + tuple(clause[1:])]
 
 
 class BankAccount(ModelSQL, ModelView):
     'Bank Account'
-    _name = 'bank.account'
-    _description = __doc__
+    __name__ = 'bank.account'
     _rec_name = 'code'
 
     default = fields.Boolean('Default', help="Default Bank Account")
@@ -90,10 +90,11 @@ class BankAccount(ModelSQL, ModelView):
             'Subdivision', domain=[('country', '=', Eval('country'))],
             depends=['country'])
 
-    def init(self, module_name):
-        super(BankAccount, self).init(module_name)
+    @classmethod
+    def __register__(cls, module_name):
+        super(BankAccount, cls).__register__(module_name)
         cursor = Transaction().cursor
-        table = TableHandler(cursor, self, module_name)
+        table = TableHandler(cursor, cls, module_name)
         # Migration for existing databases
         # Set column 'currency' not required
         table.not_null_action('currency', action='remove')
@@ -101,52 +102,52 @@ class BankAccount(ModelSQL, ModelView):
         if table.column_exist('name'):
             table.drop_column('name', exception=True)
 
-    def default_default(self):
+    @staticmethod
+    def default_default():
         return True
 
-    def get_rec_name(self, ids, name):
+    @classmethod
+    def get_rec_name(cls, records, name):
         res = {}
-        if not ids:
+        if not records:
             return res
-        for account in self.browse(ids):
+        for account in records:
             res[account.id] = ", ".join(x for x in [account.bank.name,
                     account.code, account.bank_code, account.iban,
                     account.bic] if x)
         return res
 
-    def get_bank_code(self, ids, name):
+    @classmethod
+    def get_bank_code(cls, records, name):
         res = {}
-        for account in self.browse(ids):
+        for account in records:
             res[account.id] = account.bank.bank_code
         return res
 
-    def get_bic(self, ids, name):
+    @classmethod
+    def get_bic(cls, records, name):
         res = {}
-        for account in self.browse(ids):
+        for account in records:
             res[account.id] = account.bank.bic
         return res
 
-    def on_change_bank(self, vals):
-        bank_obj = Pool().get('bank.bank')
+    def on_change_bank(self):
         res = {
            'bank_code': False,
            'bic': False
            }
-        if vals.get('bank'):
-            bank = bank_obj.browse(vals['bank'])
+        print self.bank
+        if self.bank:
+            bank = self.bank
             if bank:
                 res['bank_code'] = bank.bank_code
                 res['bic'] = bank.bic
+        print "==="
+        print res
         return res
 
-    def on_change_country(self, vals):
-        subdivision_obj = Pool().get('country.subdivision')
-        result = dict((k, vals.get(k))
-            for k in ('country', 'subdivision'))
-        if vals['subdivision']:
-            subdivision = subdivision_obj.browse(vals['subdivision'])
-            if subdivision.country.id != vals['country']:
-                result['subdivision'] = None
-        return result
-
-BankAccount()
+    def on_change_country(self):
+        if (self.subdivision
+                and self.subdivision.country != self.country):
+            return {'subdivision': None}
+        return {}
