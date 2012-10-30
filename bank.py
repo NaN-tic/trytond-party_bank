@@ -136,14 +136,11 @@ class BankAccount(ModelSQL, ModelView):
            'bank_code': False,
            'bic': False
            }
-        print self.bank
         if self.bank:
             bank = self.bank
             if bank:
                 res['bank_code'] = bank.bank_code
                 res['bic'] = bank.bic
-        print "==="
-        print res
         return res
 
     def on_change_country(self):
