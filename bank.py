@@ -106,13 +106,6 @@ class BankAccount(ModelSQL, ModelView):
     def default_default():
         return True
 
-    @staticmethod
-    def default_currency():
-        Company = Pool().get('company.company')
-        if Transaction().context.get('company'):
-            company = Company(Transaction().context['company'])
-            return company.currency.id
-
     @classmethod
     def get_rec_name(cls, records, name):
         res = {}
