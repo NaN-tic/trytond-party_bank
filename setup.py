@@ -34,13 +34,13 @@ setup(name='trytonzz_party_bank',
     author_email='info@virtual-things.biz',
     url='http://www.virtual-things.biz',
     download_url='https://bitbucket.org/ukoma/party_bank',
-    package_dir={'trytonzz.modules.party_bank': '.'},
+    package_dir={'trytond.modules.party_bank': '.'},
     packages=[
-        'trytonzz.modules.party_bank',
-        'trytonzz.modules.party_bank.tests',
+        'trytond.modules.party_bank',
+        'trytond.modules.party_bank.tests',
     ],
     package_data={
-        'trytonzz.modules.party_bank': info.get('xml', []) \
+        'trytond.modules.party_bank': info.get('xml', []) \
             + ['tryton.cfg', 'locale/*.po'],
     },
     classifiers=[
@@ -65,9 +65,9 @@ setup(name='trytonzz_party_bank',
     install_requires=requires,
     zip_safe=False,
     entry_points="""
-    [trytonzz.modules]
-    party_bank = trytonzz.modules.party_bank
+    [trytond.modules]
+    party_bank = trytond.modules.party_bank
     """,
     test_suite='tests',
-    test_loader='trytonzz.test_loader:Loader',
+    test_loader='trytond.test_loader:Loader',
 )
