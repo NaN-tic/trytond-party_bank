@@ -27,13 +27,13 @@ for dep in info.get('depends', []):
 requires.append('trytond >= %s.%s, < %s.%s' %
         (major_version, minor_version, major_version, minor_version + 1))
 
-setup(name='trytonzz_party_bank',
+setup(name='trytonspain_party_bank',
     version=info.get('version', '0.0.1'),
     description='Party Bank',
     author='Virtual Things',
     author_email='info@virtual-things.biz',
     url='http://www.virtual-things.biz',
-    download_url='https://bitbucket.org/ukoma/party_bank',
+    download_url='https://bitbucket.org/trytonspain/trytond-party_bank',
     package_dir={'trytond.modules.party_bank': '.'},
     packages=[
         'trytond.modules.party_bank',
