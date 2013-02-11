@@ -9,7 +9,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="arch" type="xml">
                 <![CDATA[
                     <tree string="Banks">
-                        <field name="name"/>
+                        <field name="party"/>
                         <field name="bank_code"/>
                         <field name="bic"/>
                     </tree>
@@ -19,25 +19,17 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <record model="ir.ui.view" id="bank_view_form">
             <field name="model">bank.bank</field>
             <field name="type">form</field>
-            <field name="inherit" ref="party.party_view_form"/>
+            <field name="inherit" eval="None"/>
             <field name="arch" type="xml">
                 <![CDATA[
-                <data>
-                    <xpath
-                        expr="/form"
-                        position="replace_attributes">
-                        <form string="Bank"/>
-                    </xpath>
-                    <xpath
-                        expr="/form/notebook"
-                        position="before">
-                        <newline/>
+                    <form string="Bank" col="6">
+                        <label name="party"/>
+                        <field name="party"/>
                         <label name="bank_code"/>
                         <field name="bank_code"/>
                         <label name="bic"/>
-                        <field name="bic"/>
-                    </xpath>
-                </data>
+                        <field name="bic"/>      
+                    </form>
                 ]]>
             </field>
         </record>

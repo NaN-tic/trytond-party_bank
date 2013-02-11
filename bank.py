@@ -12,8 +12,7 @@ __all__ = ['Bank', 'BankAccount']
 class Bank(ModelSQL, ModelView):
     'Bank'
     __name__ = 'bank.bank'
-    _inherits = {'party.party': 'party'}
-    _rec_name = 'bank_code'
+    _rec_name = 'party'
 
     party = fields.Many2One('party.party', 'Party', required=True,
             ondelete='CASCADE')
@@ -26,15 +25,9 @@ class Bank(ModelSQL, ModelView):
                 'required': Not(Bool(Eval('bank_code')))
                 }, depends=['bank_code'])
 
-    @classmethod
-    def get_rec_name(cls, records, name):
-        res = {}
-        if not records:
-            return res
-        for bank in records:
-            res[bank.id] = ", ".join(
-                     x for x in [bank.name, bank.bank_code, bank.bic] if x)
-        return res
+    def get_rec_name(self, name):
+        code = self.bank_code if self.bank_code else self.bic
+        return '%s (%s)' % (self.party.name, code)
 
     @classmethod
     def search_rec_name(cls, name, clause):
