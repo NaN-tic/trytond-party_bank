@@ -33,8 +33,8 @@ cuenta bancaria está relacionada con:
 Caso que tuviera más de una cuenta bancaria en la empresa, puede marcar una
 como cuenta por defecto.
 
-Módulos que dependen
-====================
+Módulos de los que depende
+==========================
 
 Instalados
 ----------
