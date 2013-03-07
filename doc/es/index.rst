@@ -10,7 +10,7 @@ Menú
 
 |menu_bank_view|
 
-.. |menu_bank_view| tryref:: res.menu_bank_view/complete_name
+.. |menu_bank_view| tryref:: party_bank.menu_bank_view/complete_name
 
 Cada banco dispone de:
 
