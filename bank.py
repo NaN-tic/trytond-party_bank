@@ -32,10 +32,10 @@ class Bank(ModelSQL, ModelView):
     @classmethod
     def search_rec_name(cls, name, clause):
         ids = cls.search([
-            ('name',) + tuple(clause[1:]),
+            ('party',) + tuple(clause[1:]),
             ], limit=1)
         if ids:
-            return [('name',) + tuple(clause[1:])]
+            return [('party',) + tuple(clause[1:])]
         else:
             ids = cls.search([
                 ('bank_code',) + tuple(clause[1:]),
