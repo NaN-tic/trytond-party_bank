@@ -105,7 +105,7 @@ class BankAccount(ModelSQL, ModelView):
         if not records:
             return res
         for account in records:
-            res[account.id] = ", ".join(x for x in [account.bank.name,
+            res[account.id] = ", ".join(x for x in [account.bank.party.name,
                     account.code, account.bank_code, account.iban,
                     account.bic] if x)
         return res
