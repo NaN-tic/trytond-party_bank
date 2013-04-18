@@ -1,13 +1,13 @@
 #This file is part party_bank module for Tryton.
-#The COPYRIGHT file at the top level of this repository contains 
+#The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.backend import TableHandler
 from trytond.pyson import Not, Eval, Bool
 from trytond.transaction import Transaction
-from trytond.pool import Pool
 
 __all__ = ['Bank', 'BankAccount']
+
 
 class Bank(ModelSQL, ModelView):
     'Bank'
