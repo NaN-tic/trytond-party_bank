@@ -17,13 +17,13 @@ class Bank(ModelSQL, ModelView):
     party = fields.Many2One('party.party', 'Party', required=True,
             ondelete='CASCADE')
     bank_code = fields.Char('National Code', select=1,
-            states={
-                'required': Not(Bool(Eval('bic')))
-                }, depends=['bic'])
+        states={
+            'required': Not(Bool(Eval('bic')))
+            }, depends=['bic'])
     bic = fields.Char('BIC/SWIFT', select=1,
-            states={
-                'required': Not(Bool(Eval('bank_code')))
-                }, depends=['bank_code'])
+        states={
+            'required': Not(Bool(Eval('bank_code')))
+            }, depends=['bank_code'])
 
     def get_rec_name(self, name):
         code = self.bank_code if self.bank_code else self.bic
