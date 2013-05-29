@@ -52,11 +52,11 @@ msgstr "ID"
 
 msgctxt "field:bank.account,owner:"
 msgid "Differing Owner"
-msgstr "Propietario de la cuenta"
+msgstr "Titular de la cuenta"
 
 msgctxt "field:bank.account,party:"
 msgid "Party"
-msgstr "Terceros"
+msgstr "Tercero"
 
 msgctxt "field:bank.account,rec_name:"
 msgid "Name"
@@ -142,17 +142,9 @@ msgctxt "model:ir.action,name:act_bank_view"
 msgid "Banks"
 msgstr "Bancos"
 
-msgctxt "model:ir.action,name:act_bank_view2"
-msgid "New Bank"
-msgstr "Nuevo banco"
-
 msgctxt "model:ir.ui.menu,name:menu_bank_view"
 msgid "Banks"
 msgstr "Bancos"
-
-msgctxt "model:ir.ui.menu,name:menu_bank_view2"
-msgid "New Bank"
-msgstr "Nuevo banco"
 
 msgctxt "view:bank.account:"
 msgid "Bank Account"
