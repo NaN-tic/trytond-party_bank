@@ -83,6 +83,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                     <field name="country"/>
                     <label name="subdivision"/>
                     <field name="subdivision"/>
+                    <label name="party"/>
+                    <field name="party"/>
                 </form>
                 ]]>
             </field>
@@ -101,6 +103,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                     <field name="bank"/>
                     <field name="currency"/>
                     <field name="owner"/>
+                    <field name="party"/>
                 </tree>
                 ]]>
             </field>
