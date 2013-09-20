@@ -1,5 +1,8 @@
 trytond_party_bank
-=============================
+==================
+
+WARNING: This module is not continue in versions major 2.8. See bank module
+from hg.tryton.org
 
 Module for adding banks to parties for the Tryton application platform.
 
